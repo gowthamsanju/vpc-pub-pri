@@ -1,4 +1,5 @@
 provider "aws" {
+  region     = "ap-southeast-1"
 }
 
 #This is VPC code
