@@ -18,7 +18,7 @@ pipeline {
                 script {
                     if(params.skip_test) {
                         sh 'echo "Exiting Destroy stage"'
-                        continue
+                        return
                     }
                 }
                 withAWS(credentials: 'fbeffe18-eed5-431c-ae50-4adbc1a79163') {
