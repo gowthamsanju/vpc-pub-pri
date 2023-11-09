@@ -22,7 +22,7 @@ pipeline {
                     }
                 }
                 withAWS(credentials: 'fbeffe18-eed5-431c-ae50-4adbc1a79163') {
-                    sh 'pwd;cd terraform/ ; terraform destroy'
+                    sh 'pwd;cd terraform/ ; terraform destroy --auto-approve'
                 }
             }
         }
