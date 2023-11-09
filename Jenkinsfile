@@ -11,6 +11,21 @@ pipeline {
                     }
                 }
             }
+       stage('Destroy') {
+            steps {
+                input message: 'Want to skip the Destroy stage?', ok: 'Yes',
+                  parameters: [booleanParam(name: 'skip_test', defaultValue: false)], timeout: time(minutes: 5)
+                script {
+                    if(params.skip_test) {
+                        sh 'echo "Exiting Destroy stage"'
+                        return
+                    }
+                }
+                withAWS(credentials: 'fbeffe18-eed5-431c-ae50-4adbc1a79163') {
+                    sh 'pwd;cd terraform/ ; terraform destroy'
+                }
+            }
+        }
 
         stage('Plan') {
             steps {
