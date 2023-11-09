@@ -93,6 +93,7 @@ resource "aws_key_pair" "ltimindtreekey" {
 resource "aws_instance" "web-server" {
   ami             = "ami-05caa5aa0186b660f"
   subnet_id       = aws_subnet.public-subnet.id
+  associate_public_ip_address = true
   instance_type   = "t2.micro"
   security_groups = ["${aws_security_group.test_access.id}"]
   key_name        = "ltimindtreekey"
