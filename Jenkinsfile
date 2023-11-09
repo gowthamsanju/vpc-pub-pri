@@ -14,11 +14,11 @@ pipeline {
        stage('Destroy') {
             steps {
                 input message: 'Want to skip the Destroy stage?', ok: 'Yes',
-                  parameters: [booleanParam(name: 'skip_destroy', defaultValue: false)]
+                parameters: [booleanParam(name: 'skip_destroy', defaultValue: false)]
                 script {
                     if(params.skip_test) {
                         sh 'echo "Exiting Destroy stage"'
-                        return
+                        exit 1
                     }
                 }
                 withAWS(credentials: 'fbeffe18-eed5-431c-ae50-4adbc1a79163') {
